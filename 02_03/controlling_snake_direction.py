@@ -4,7 +4,7 @@ import turtle
 # Define program constants
 WIDTH = 500
 HEIGHT = 500
-DELAY = 100  # Milliseconds
+DELAY = 500  # Milliseconds
 
 offsets = {
     "Up":(0,20),
@@ -34,29 +34,34 @@ def go_left():
         snake_direction = "Left"
 
 
-def move_snake():
+def game_loop():
     stamper.clearstamps()  # Remove existing stamps made by stamper.
 
     new_head = snake[-1].copy()
     new_head[0] += offsets[snake_direction][0]
     new_head[1] += offsets[snake_direction][1]
 
-    # Add new head to snake body.
-    snake.append(new_head)
+    # check collisions
+    if new_head in snake or new_head[0] < -WIDTH / 2 or new_head[0] > WIDTH / 2 \
+        or new_head[1] <- HEIGHT / 2 or new_head[1] > HEIGHT / 2:
+        turtle.bye()
+    else:
+        # Add new head to snake body.
+        snake.append(new_head)
 
-    # Remove last segment of snake.
-    snake.pop(0)
+        # Remove last segment of snake.
+        snake.pop(0)
 
-    # Draw snake for the first time.
-    for segment in snake:
-        stamper.goto(segment[0], segment[1])
-        stamper.stamp()
+        # Draw snake for the first time.
+        for segment in snake:
+            stamper.goto(segment[0], segment[1])
+            stamper.stamp()
 
-    # Refresh screen
-    screen.update()
+        # Refresh screen
+        screen.update()
 
-    # Rinse and repeat
-    turtle.ontimer(move_snake, DELAY)
+        # Rinse and repeat
+        turtle.ontimer(game_loop, DELAY)
 
 
 # Create a window where we will do our drawing.
@@ -88,7 +93,7 @@ for segment in snake:
     stamper.stamp()
 
 # Set animation in motion
-move_snake()
+game_loop()
 
 # Finish nicely
 turtle.done()
