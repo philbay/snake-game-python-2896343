@@ -8,19 +8,16 @@ HEIGHT = 500
 # Create a window where we will do our drawing.
 screen = turtle.Screen()
 screen.setup(WIDTH, HEIGHT)  # Set the dimensions of the Turtle Graphics window.
-screen.title("Program Stamping")
+screen.title("Program Title")
 screen.bgcolor("cyan")
 
 # Create a turtle to do your bidding
-stamper = turtle.Turtle()
-stamper.shape("square")
-stamper.color("red")
-stamper.shapesize(50 / 20) # 20 default size of a square
-stamper.stamp()
-stamper.penup()
-stamper.shapesize(10/20)
-stamper.goto(100, 100)
-stamper.stamp()
+my_turtle = turtle.Turtle()
+my_turtle.shape("turtle")
+my_turtle.color("red")
+
+# Your turtle awaits your command
+my_turtle.forward(100)  # Sample command
 
 # This statement (or an equivalent) is needed at the end of all your turtle programs.
 turtle.done()
